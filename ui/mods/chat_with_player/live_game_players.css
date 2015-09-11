@@ -1,0 +1,7 @@
+.chat_with_player {
+  color: white;
+  font-size: 10vh;
+  position: absolute;
+  top: 45vh;
+  left: 30vw;
+}

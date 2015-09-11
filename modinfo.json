@@ -1,0 +1,24 @@
+{
+  "author": "wondible",
+  "build": "87296",
+  "category": ["chat", "in-game"],
+  "context": "client",
+  "date": "2015/09/11",
+  "description": "Easily start a private chat with player in current game.",
+  "display_name": "Chat With Player",
+  "forum": null,
+  "identifier": "com.wondible.pa.chat_with_player",
+  "priority": 100,
+  "scenes": {
+    "live_game_players": [
+      "coui://ui/mods/chat_with_player/live_game_players.css",
+      "coui://ui/mods/chat_with_player/live_game_players.js"
+    ],
+    "uberbar": [
+      "coui://ui/mods/chat_with_player/uberbar.js"
+    ]
+  },
+  "signature": "not yet implemented",
+  "version": "0.1.0"
+}
+
