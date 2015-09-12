@@ -43,6 +43,7 @@
 
   handlers.startChat = function(payload) {
     resolveId(payload).then(function(pl) {
+      model.showUberBar(true)
       var exists = model.conversationMap()[pl.uberId];
       if (exists) {
         exists.minimized(false);
@@ -55,6 +56,7 @@
   handlers.sendChatInvite = function(payload) {
     resolveId(payload).then(function(pl) {
       if (pl.user) {
+        model.showUberBar(true)
         pl.user.sendChatInvite()
       } else if (pl.uberId) {
         handlers.startChat(payload)
