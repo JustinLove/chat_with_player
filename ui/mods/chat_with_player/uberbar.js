@@ -36,4 +36,17 @@
       console.log('could not identify player', payload.displayName)
     })
   }
+
+  handlers.startChat = function(payload) {
+    resolveId(payload).then(function(pl) {
+      var exists = model.conversationMap()[pl.uberId];
+      if (exists) {
+        exists.minimized(false);
+      } else {
+        model.startConversationsWith(pl.uberId)
+      }
+    }, function() {
+      console.log('could not identify player', payload.displayName)
+    })
+  }
 })()

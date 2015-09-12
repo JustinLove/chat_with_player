@@ -1,8 +1,7 @@
 (function() {
   model.chatWithPlayer = function(displayName) {
-    api.Panel.message('uberbar', 'sendChat', {
+    api.Panel.message('uberbar', 'startChat', {
       displayName: displayName,
-      message: '.',
     })
   }
 
