@@ -1,7 +1,5 @@
-.chat_with_player {
-  color: white;
-  font-size: 10vh;
-  position: absolute;
-  top: 45vh;
-  left: 30vw;
+.chat_with_player_container {
+  display: inline-block;
+  margin: 0;
+  padding: 0;
 }
