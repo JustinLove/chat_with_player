@@ -1,6 +1,6 @@
 (function() {
   model.chatWithPlayer = function(displayName) {
-    api.Panel.message('uberbar', 'startChat', {
+    api.Panel.message('uberbar', 'sendChatInvite', {
       displayName: displayName,
     })
   }

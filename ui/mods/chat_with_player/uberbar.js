@@ -3,12 +3,14 @@
     var def = $.Deferred()
 
     if (payload.uberId) {
+      payload.user = model.idToContactMap()[payload.uberId]
       def.resolve(payload)
       return def.promise()
     }
 
     if (payload.displayName == model.displayName()) {
       payload.uberId = model.uberId()
+      payload.user = model.idToContactMap()[payload.uberId]
       def.resolve(payload)
       return def.promise()
     }
@@ -18,12 +20,14 @@
         return user.displayName() == payload.displayName
       })[0]
       if (user) {
+        payload.user = user
         payload.uberId = user.uberId()
         def.resolve(payload)
         return def.promise()
       }
     }
 
+    console.log('could not identify player', payload.displayName)
     def.reject()
     return def.promise()
   }
@@ -45,8 +49,17 @@
       } else {
         model.startConversationsWith(pl.uberId)
       }
-    }, function() {
-      console.log('could not identify player', payload.displayName)
+    })
+  }
+
+  handlers.sendChatInvite = function(payload) {
+    resolveId(payload).then(function(pl) {
+      if (pl.user) {
+        pl.user.sendChatInvite()
+      } else if (pl.uberId) {
+        handlers.startChat(payload)
+        jabber.sendCommand(pl.uberId, 'chat_invite');
+      }
     })
   }
 })()
