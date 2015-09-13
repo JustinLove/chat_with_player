@@ -95,4 +95,38 @@
       }
     })
   }
+
+  // From PA-Chat
+  if (!window['paChat']) {
+    model.notifyPlayer = function( message ) {
+      if ( !message ) {
+        message = '';
+      }
+
+      api.game.outOfGameNotification( message );
+      api.Panel.message( "options_bar", "alertSocial" );
+    };
+
+    model.savedConversationCount = ko.observable( 0 );
+
+    model.conversations.subscribe(function( conversations ) {
+      var len = conversations.length;
+
+      if ( len > model.savedConversationCount() ) {
+        model.notifyPlayer( 'New Private Conversation' );
+      }
+
+      model.savedConversationCount( len );
+
+      _.forEach( conversations, function( conversation ) {
+        if ( !conversation.alertSocialMarked ) {
+          conversation.alertSocialMarked = true;
+          conversation.messageLog.subscribe(function( messageLog ) {
+            var message = _.last( messageLog );
+            model.notifyPlayer( 'New Private Message from ' + conversation.partnerDisplayName() );
+          } );
+        }
+      } );
+    } );
+  }
 })()
