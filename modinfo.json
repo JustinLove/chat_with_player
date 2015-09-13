@@ -6,7 +6,7 @@
   "date": "2015/09/13",
   "description": "Easily start a private chat with player in current game.",
   "display_name": "Chat With Player",
-  "forum": null,
+  "forum": "https://forums.uberent.com/threads/rel-chat-with-player.70434/",
   "icon": "http://wondible.com/pa/icons/chat_with_player.png",
   "identifier": "com.wondible.pa.chat_with_player",
   "priority": 110,
@@ -24,6 +24,6 @@
     ]
   },
   "signature": "not yet implemented",
-  "version": "0.1.0"
+  "version": "1.0.0"
 }
 
