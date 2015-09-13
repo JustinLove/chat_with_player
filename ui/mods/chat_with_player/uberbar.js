@@ -26,11 +26,27 @@
         payload.uberId = user.uberId()
         def.resolve(payload)
         return def.promise()
+      } else {
+        // not actually display name, but some people will match
+        engine.asyncCall('ubernet.call',
+            '/GameClient/UserId?' +  $.param({ UberName: payload.displayName }),
+            false)
+          .done(function (data) {
+            var result = JSON.parse(data);
+            payload.uberId = result.UberId
+            model.maybeCreateNewContactWithId(payload.uberId)
+            payload.user = model.idToContactMap()[payload.uberId]
+            def.resolve(payload)
+          })
+          .fail(function (data) {
+            console.log('could not identify player', payload.displayName)
+            def.reject()
+          });
+        return def.promise()
       }
     }
 
-    console.log('could not identify player', payload.displayName)
-    def.reject()
+    console.log('could not identify player')
     return def.promise()
   }
 
