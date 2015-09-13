@@ -7,6 +7,7 @@
   "description": "Easily start a private chat with player in current game.",
   "display_name": "Chat With Player",
   "forum": null,
+  "icon": "http://wondible.com/pa/icons/chat_with_player.png",
   "identifier": "com.wondible.pa.chat_with_player",
   "priority": 110,
   "scenes": {
