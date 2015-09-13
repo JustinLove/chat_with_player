@@ -84,13 +84,11 @@
     })
   }
 
-  handlers.sendChatInvite = function(payload) {
+  handlers.maybeSendChatInvite = function(payload) {
     resolveId(payload).then(function(pl) {
-      if (pl.user) {
-        model.showUberBar(true)
-        pl.user.sendChatInvite()
-      } else if (pl.uberId) {
-        startChatWithUberId(pl.uberId)
+      if (pl.user && !pl.user.allowChat()) {
+        jabber.sendCommand(pl.uberId, 'chat_invite');
+      } else {
         jabber.sendCommand(pl.uberId, 'chat_invite');
       }
     })
